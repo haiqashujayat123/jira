@@ -1,0 +1,168 @@
+# include <iostream>
+using namespace std;
+#define MAX 100
+
+  int stack_arr[MAX];
+  int top=-1;
+
+  void push(int data);
+  //void pop();
+  void display();     //seems to work
+  int pop_forPrime();
+  int  isEmpty();
+  int  isFull();
+
+
+
+
+
+  int pop_forPrime(){
+  int value;
+  if(top==-1){
+    cout<<"stack unddrflow "<<endl;
+
+  }
+  else{
+
+    //top=top-1;      //wrong
+    value=stack_arr[top];
+    top=top-1;
+    //cout<<"popped value is : "<<value<<endl;
+    return value;
+  }
+
+  }
+
+  void dec2bin(int data){
+    while(data!=0){
+        push(data%2);
+            data=data/2;
+
+    }
+    pop_forPrime();
+    display();
+
+  }
+
+  int isFull(){
+   if(top==MAX-1){
+    return 1;
+   }
+   else{
+    return 0;
+   }
+  }
+
+  int  isEmpty(){
+    if(top==-1){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+
+  }
+
+
+
+
+  void prime_fac(int num){
+   int i=2;   //start checking  from 2
+   while(num!=1){
+    while(num%i==0){               //complete division
+            push(i);
+         num=num/i;    //num updated
+   }
+   i++;
+
+  }
+
+     pop_forPrime();
+       display();
+
+  }
+
+
+  void push(int data){
+   if(top==MAX-1){
+    cout<<"stack overflow "<<endl;
+   }
+   else{}
+   top=top+1;
+   stack_arr[top]=data;
+   cout<<"Value pushed in stack :"<<data<<endl;
+
+
+  }
+
+
+  void pop(){
+  int value;
+  if(top==-1){
+    cout<<"stack unddrflow "<<endl;
+
+  }
+  else{
+
+    //top=top-1;      //wrong
+    value=stack_arr[top];
+    top=top-1;
+    cout<<"popped value is : "<<value<<endl;
+  }
+
+  }
+
+  void display(){
+  if(top==-1){
+
+    cout<<"nothing to display"<<endl;
+  }
+  else{
+        cout<<"STACK  REPRESENTATION IS :"<<endl;
+
+    for(int i=top;i>=0;i--){
+        cout<<stack_arr[i]<<" "<<endl;
+    }
+
+  }
+
+  }
+
+
+  int main(){
+
+     push(10);
+      push(6);
+      push(8);
+      push(9);
+
+      display();
+
+      cout<<endl;
+
+     pop();
+     pop();
+     pop();
+
+
+
+      display();
+
+      cout<<endl;
+
+      cout<<"EVALUATTION OF PRIME FACTORS "<<endl;
+
+      prime_fac(450);
+
+      cout<<endl;
+
+       cout<<"DECIMAL TO  BINARY "<<endl;
+       int data;
+       cout<<"enter decimal number : ";
+       cin>>data;
+
+        dec2bin(data);
+
+
+  return 0;
+  }
